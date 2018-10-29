@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 function is_django_installed() {
   python -c "import django" &>/dev/null
 }
