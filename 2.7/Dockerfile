@@ -39,6 +39,8 @@ RUN INSTALL_PKGS="libjpeg-turbo libjpeg-turbo-devel python27 python27-python-dev
         libffi-devel libtool-ltdl enchant" && \
     yum install -y centos-release-scl && \
     yum -y --setopt=tsflags=nodocs install --enablerepo=centosplus $INSTALL_PKGS && \
+    yum install -y epel-release && \
+    yum localinstall -y https://www.linuxglobal.com/static/blog/pdftk-2.02-1.el7.x86_64.rpm && \
     rpm -V $INSTALL_PKGS && \
     # Remove centos-logos (httpd dependency) to keep image size smaller.
     rpm -e --nodeps centos-logos && \
