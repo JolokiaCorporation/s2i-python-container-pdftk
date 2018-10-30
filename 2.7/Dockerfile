@@ -36,11 +36,11 @@ LABEL summary="$SUMMARY" \
 RUN INSTALL_PKGS="libjpeg-turbo libjpeg-turbo-devel python27 python27-python-devel python27-python-setuptools \
         python27-python-pip nss_wrapper httpd24 httpd24-httpd-devel httpd24-mod_ssl \
         httpd24-mod_auth_kerb httpd24-mod_ldap httpd24-mod_session atlas-devel gcc-gfortran \
-        libffi-devel libtool-ltdl enchant" && \
+        libffi-devel libtool-ltdl enchant pdftk" && \
+    wget https://copr.fedorainfracloud.org/coprs/robert/gcj/repo/epel-7/robert-gcj-epel-7.repo -P /etc/yum.repos.d &&\
+    wget https://copr.fedorainfracloud.org/coprs/robert/pdftk/repo/epel-7/robert-pdftk-epel-7.repo -P /etc/yum.repos.d &&\
     yum install -y centos-release-scl && \
     yum -y --setopt=tsflags=nodocs install --enablerepo=centosplus $INSTALL_PKGS && \
-    yum install -y epel-release && \
-    yum localinstall -y https://www.linuxglobal.com/static/blog/pdftk-2.02-1.el7.x86_64.rpm && \
     rpm -V $INSTALL_PKGS && \
     # Remove centos-logos (httpd dependency) to keep image size smaller.
     rpm -e --nodeps centos-logos && \
